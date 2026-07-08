@@ -1,0 +1,46 @@
+{
+  "name": "echo-ts",
+  "version": "0.1.0",
+  "modulePath": "echo-ts.wasm",
+  "abiEncoding": "postcard",
+  "mutations": ["echo.send"],
+  "inputs": {
+    "echo.send": {
+      "type": {
+        "kind": "object",
+        "fields": {
+          "roomId": { "type": { "kind": "id", "entity": "Room" } },
+          "body": { "type": { "kind": "string" } },
+          "scheduleReminder": { "type": { "kind": "string" }, "optional": true },
+          "scheduleReminderDueAtMs": { "type": { "kind": "string" }, "optional": true }
+        }
+      }
+    }
+  },
+  "reads": [],
+  "recordScopes": {
+    "read": ["rooms"],
+    "write": ["rooms"],
+    "nestedRead": ["rooms.messages"],
+    "nestedWrite": ["rooms.messages"]
+  },
+  "objectScopes": {
+    "write": ["behavior-object-*"]
+  },
+  "realtimeScopes": {
+    "write": ["behavior-state-*", "behavior-broadcast-*", "behavior-presence-*"]
+  },
+  "connectionScopes": {
+    "read": ["alice"],
+    "write": ["behavior-disconnect-*"]
+  },
+  "userScopes": {
+    "publish": ["behavior-inbox-*"]
+  },
+  "eventScopes": {
+    "publish": ["notification.created", "presence.ping"],
+    "realtimeBroadcast": ["behavior.channel.*"]
+  },
+  "commands": ["upsertRecord", "putObject", "publishUserEvent", "publishUserVolatile", "broadcastRealtimeChannel", "updateRealtimeChannelState", "updateRealtimePresence", "disconnectConnections", "activateRuntimeRecords", "activateRuntimeRoom", "scheduleActorReminder", "sendMessage"],
+  "maxFuel": 1000000
+}

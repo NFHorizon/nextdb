@@ -1,0 +1,17 @@
+{
+  "name": "nextdb-echo-ts-behavior",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "compile": "node ../../../packages/nextdb-behavior-sdk/dist/cli.js compile --manifest nextdb.behavior.json --entry src/index.ts --out ../../../data/behaviors/echo-ts",
+    "pack": "npm run compile"
+  },
+  "dependencies": {
+    "@nextdb/behavior-sdk": "0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

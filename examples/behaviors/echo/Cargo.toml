@@ -1,0 +1,12 @@
+[package]
+name = "nextdb-echo-behavior"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+nextdb-behavior-sdk = { path = "../../../crates/nextdb-behavior-sdk" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

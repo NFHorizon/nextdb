@@ -1,0 +1,37 @@
+{
+  "name": "echo",
+  "version": "0.1.0",
+  "modulePath": "echo.wasm",
+  "abiEncoding": "postcardTypedSchema",
+  "mutations": ["echo.send"],
+  "inputs": {
+    "echo.send": {
+      "type": {
+        "kind": "object",
+        "fields": {
+          "roomId": { "type": { "kind": "id", "entity": "Room" } },
+          "body": { "type": { "kind": "string" } }
+        }
+      }
+    }
+  },
+  "reads": ["records", "nestedRecords", "objectBodies", "realtimeChannelMembers", "realtimeChannelStates", "connectionSessions"],
+  "recordScopes": {
+    "read": ["rooms"],
+    "write": ["rooms"],
+    "nestedRead": ["rooms.messages"],
+    "nestedWrite": ["rooms.messages"]
+  },
+  "objectScopes": {
+    "read": ["rust-behavior-object-*"],
+    "write": ["rust-behavior-output-*"]
+  },
+  "realtimeScopes": {
+    "read": ["rust-behavior-room-*"]
+  },
+  "connectionScopes": {
+    "read": ["alice"]
+  },
+  "commands": ["upsertRecord", "recordTransaction", "putObject", "activateRuntimeRecords", "activateRuntimeRoom", "sendMessage"],
+  "maxFuel": 1000000
+}

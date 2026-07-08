@@ -1,0 +1,8 @@
+target/
+node_modules/
+dist/
+data/
+packages/nextdb-client/test/generated/
+.DS_Store
+*.log
+references/orleans/
